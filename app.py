@@ -5,8 +5,16 @@ from datetime import datetime, timedelta
 import re
 from functools import lru_cache
 import statistics
+from flask_cors import CORS
 
 app = Flask(__name__)
+CORS(app, resources={
+    r"/api/*": {
+        "origins": ["*"],  # Allow all origins for development
+        "methods": ["GET", "POST", "OPTIONS"],  # Allowed methods
+        "allow_headers": ["Content-Type", "Authorization"]  # Allowed headers
+    }
+})
 
 CONTRIBUTION_COLORS = {
     0: "#ebedf0",
